@@ -4,6 +4,6 @@
 An open source fan project for tracking, persisting, and visualizing netplay match statistics for Guilty Gear Xrd REV2. In an effort to better understand where the work is needed to improve, use GearNet to automatically record your unique win ratio records for all character matchups.
 
 **Maintainer:** [aze](https://github.com/azeDevs/)  
-**Contributors:** [Labryz](https://github.com/Labreezy/), [Lost Illusion](https://github.com/depressingillusion/)
+**Contributors:** [Labryz](https://github.com/Labreezy/), [Lost](https://github.com/lost-illusi0n)
 
 For more information, check out the [GearNet Wiki](https://github.com/azeDevs/gearNet-Xrd/wiki).
