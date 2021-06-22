@@ -30,7 +30,7 @@ class MemHandler : XrdApi {
         if(!isConnected()){
             return null
         }
-        val procBaseAddr: Pointer = GG_PROC!!.modules["GuiltyGearXrd.exe"]!!.pointer
+        val procBaseAddr: Pointer by lazy { GG_PROC!!.modules["GuiltyGearXrd.exe"]!!.pointer }
         var bufferMem = Memory(4L)
         var lastPointer: Pointer = procBaseAddr
         for (i in 0..offsets.size - 2) {
