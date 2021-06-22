@@ -1,35 +1,23 @@
 package database
 
-import org.jdbi.v3.core.ConnectionException
 import org.jdbi.v3.core.Jdbi
 import org.jdbi.v3.sqlobject.statement.SqlQuery
 import org.jdbi.v3.sqlobject.statement.SqlUpdate
-import org.postgresql.util.PSQLException
-import java.util.*
 
 //Soon to be Deprecated in favor of Web API
-class DatabaseHandler(host: String, password: String, username: String = "arcNet", port: Int = 5432) : SqlApi {
-    private val connector: Jdbi
+class DatabaseHandler : SqlApi {
+    private val connector: Jdbi = Jdbi.create("jdbc:sqlite:arcNet").installPlugins()
     private val daoClass = SqlApiDao::class.java
 
+    // DatabaseHandler's init first executes on line 14 in Session.kt
     init {
-        // DatabaseHandler's init first executes on line 14 in Session.kt
-        //Init credentials
-        val credentials = Properties()
-        credentials["user"] = username
-        credentials["password"] = password
-        //Login
-        connector = Jdbi.create("jdbc:postgresql://$host:$port/ArcNet", credentials)
-        //Install kotlin extensions, etc.
-        connector.installPlugins()
-        //CREATES DATA TABLES IF DOESNT EXIST
-        if(isConnected()) {
-            connector.open().use {
-                //CREATES fightData TABLE IF DOESNT EXIST
-                it.execute("create table if not exists fightdata (winnerid bigint, winnerchar smallint, fallenid bigint, fallenchar smallint, occurences int, unique(winnerid, winnerchar, fallenid, fallenchar))")
-                //CREATES userData TABLE IF DOESNT EXIST
-                it.execute("create table if not exists userdata(id bigint unique, displayname text, matcheswon int, matchessum int, bountywon int, bountysum int)")
-            }
+        // create the tables if they don't already exist
+        // can this be made nicer? without having to hardcode the tables
+        connector.open().use {
+            // create the fightData table if it doesn't exist
+            it.execute("create table if not exists fightdata (winnerid bigint, winnerchar smallint, fallenid bigint, fallenchar smallint, occurences int, unique(winnerid, winnerchar, fallenid, fallenchar))")
+            //create the userData table if it doesn't exist
+            it.execute("create table if not exists userdata(id bigint unique, displayname text, matcheswon int, matchessum int, bountywon int, bountysum int)")
         }
     }
 

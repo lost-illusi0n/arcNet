@@ -10,7 +10,7 @@ import kotlin.math.max
 
 class Session: Controller() {
     val xrdApi: XrdApi = MemHandler()
-    val dataApi: DatabaseHandler = DatabaseHandler("","","")
+    val dataApi: DatabaseHandler = DatabaseHandler()
     val players: HashMap<Long, Player> = HashMap()
     val match = Match() //var matches: HashMap<Long, Match> = HashMap()
 

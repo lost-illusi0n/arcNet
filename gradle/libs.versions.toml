@@ -15,10 +15,10 @@ jna-platform = { module = "net.java.dev.jna:jna-platform", version.ref = "jna" }
 twitch4j = { module = "com.github.twitch4j:twitch4j", version = "1.0.0-alpha.13" }
 
 jdbi-sqlobject = { module = "org.jdbi:jdbi3-sqlobject", version.ref = "jdbi" }
-jdbi-postgres = { module = "org.jdbi:jdbi3-postgres", version.ref = "jdbi" }
+jdbi-sqlite = { module = "org.jdbi:jdbi3-sqlite", version.ref = "jdbi" }
 jdbi-kotlin-sqlobject = { module = "org.jdbi:jdbi3-kotlin-sqlobject", version.ref = "jdbi" }
 jdbi-core = { module = "org.jdbi:jdbi3-core", version.ref = "jdbi" }
-postgresql = { module = "org.postgresql:postgresql", version = "42.2.5" }
+sqlite = { module = "org.xerial:sqlite-jdbc", version = "3.34.0" }
 
 tornadofx = { module = "no.tornado:tornadofx", version = "1.7.17" }
 
@@ -26,5 +26,5 @@ tornadofx = { module = "no.tornado:tornadofx", version = "1.7.17" }
 core = ["kt-stdlib", "kx-coroutines", "launch4j"]
 memscan = ["kotmem", "jna-core", "jna-platform"]
 twitch = ["twitch4j"]
-database = ["jdbi-sqlobject", "jdbi-postgres", "jdbi-kotlin-sqlobject", "jdbi-core", "postgresql"]
+database = ["jdbi-sqlobject", "jdbi-sqlite", "jdbi-kotlin-sqlobject", "jdbi-core", "sqlite"]
 gui = ["tornadofx"]
