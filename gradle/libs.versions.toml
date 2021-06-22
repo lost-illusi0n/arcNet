@@ -1,0 +1,31 @@
+[versions]
+kt = "1.5.10"
+jna = "4.2.2"
+jdbi = "3.8.0"
+
+[libraries]
+kt-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib-common", version.ref = "kt" }
+kx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version = "1.5.0"}
+launch4j = { module = "edu.sc.seis.gradle:launch4j", version = "2.4.6" }
+logger = { module = "org.slf4j:slf4j-nop", version = "1.8.0-beta4" }
+
+kotmem = { module = "org.jire.kotmem:Kotmem", version = "0.86" }
+jna-core = { module = "net.java.dev.jna:jna", version.ref = "jna" }
+jna-platform = { module = "net.java.dev.jna:jna-platform", version.ref = "jna" }
+
+twitch4j = { module = "com.github.twitch4j:twitch4j", version = "1.0.0-alpha.13" }
+
+jdbi-sqlobject = { module = "org.jdbi:jdbi3-sqlobject", version.ref = "jdbi" }
+jdbi-postgres = { module = "org.jdbi:jdbi3-postgres", version.ref = "jdbi" }
+jdbi-kotlin-sqlobject = { module = "org.jdbi:jdbi3-kotlin-sqlobject", version.ref = "jdbi" }
+jdbi-core = { module = "org.jdbi:jdbi3-core", version.ref = "jdbi" }
+postgresql = { module = "org.postgresql:postgresql", version = "42.2.5" }
+
+tornadofx = { module = "no.tornado:tornadofx", version = "1.7.17" }
+
+[bundles]
+core = ["kt-stdlib", "kx-coroutines", "launch4j"]
+memscan = ["kotmem", "jna-core", "jna-platform"]
+twitch = ["twitch4j"]
+database = ["jdbi-sqlobject", "jdbi-postgres", "jdbi-kotlin-sqlobject", "jdbi-core", "postgresql"]
+gui = ["tornadofx"]
