@@ -58,15 +58,18 @@ javafx {
 }
 
 val fatJar = task("fatJar", type = Jar::class) {
-    baseName = "${project.name}-fat"
+    // bug in intellij shows a false-positive error as it thinks we would be setting the underlying field. we are not
+    // and as a workaround we just use #set to get around that error.
+    // archiveBaseName = "${project.name}-fat"
+    archiveBaseName.set("${project.name}-fat")
     manifest {
         attributes("Implementation-Title" to "GearNet Xrd",
-            "Implementation-Version" to version,
+            "Implementation-Version" to archiveVersion,
             "Main-Class" to "MainKt")
     }
 
     dependsOn(configurations.runtimeClasspath)
-    from(configurations.runtimeClasspath.filter{ it.name.endsWith("jar") }.map{ zipTree(it) })
+    from(configurations.runtimeClasspath.get().filter { it.name.endsWith("jar") }.map{ zipTree(it) })
     with(tasks["jar"] as CopySpec)
 }
 tasks.withType<KotlinCompile> {
