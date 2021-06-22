@@ -1,10 +1,9 @@
 [versions]
-kt = "1.5.10"
 jna = "4.2.2"
 jdbi = "3.8.0"
 
 [libraries]
-kt-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib-common", version.ref = "kt" }
+kt-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version = "1.5.10" }
 kx-coroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version = "1.5.0"}
 launch4j = { module = "edu.sc.seis.gradle:launch4j", version = "2.4.6" }
 logger = { module = "org.slf4j:slf4j-nop", version = "1.8.0-beta4" }

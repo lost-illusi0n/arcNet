@@ -33,13 +33,17 @@ class DatabaseHandler(host: String, password: String, username: String = "arcNet
         }
     }
 
-    override fun isConnected(): Boolean {
-        return try {
-            connector.open().use { true }
-        } catch(e: ConnectionException) {
-            false
-        }
-    }
+    // this class does not have any persistent connection, and would be wasteful to possible create one each time
+    // this method is called. besides if we cannot connect, then the init block will fail!
+    override fun isConnected(): Boolean = true
+
+//    override fun isConnected(): Boolean {
+//        return try {
+//            connector.open().use { true }
+//        } catch(e: ConnectionException) {
+//            false
+//        }
+//    }
 
     override fun getLegacyData(steamId: Long): LegacyData = useDao { it.getData(steamId) }
 
